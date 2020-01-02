@@ -1,0 +1,5 @@
+#!/usr/bin/fish
+
+set cluster (gcloud container clusters list --format="value(name)" | sort --reverse | fzf)
+echo Switching cluster to {$cluster}...
+gcloud container clusters get-credentials $cluster
