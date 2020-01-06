@@ -3,5 +3,7 @@
 set cluster (gcloud container clusters list --format="value(name)" | sort --reverse | fzf)
 set zone (gcloud container clusters list --filter name=$cluster --format="value(location)")
 
-echo Switching cluster to {$cluster} in $zone...
+echo Switching cluster to $cluster in $zone...
 gcloud container clusters get-credentials $cluster --zone=$zone
+
+kubectl config set-context --current --namespace=default
