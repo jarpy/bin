@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+
+set passphrase [exec lpass show --password jarpy-ssh-passphrase]
+spawn ssh-add /home/jarpy/.ssh/id_rsa
+expect "Enter passphrase for /home/jarpy/.ssh/id_rsa:"
+send "$passphrase\n";
+expect "Identity added: /home/jarpy/.ssh/id_rsa (/home/jarpy/.ssh/id_rsa)"
+
+spawn ssh-add /home/jarpy/.ssh/id_elastic
+expect "Enter passphrase for /home/jarpy/.ssh/id_elastic:"
+send "$passphrase\n";
+expect "Identity added: /home/jarpy/.ssh/id_elastic (/home/jarpy/.ssh/id_elastic)"
+
+set passphrase [exec vault read -field=passphrase secret/ssh-keypairs/elastic | base64 --decode]
+spawn ssh-add /home/jarpy/.ssh/elastic.id_rsa
+expect "Enter passphrase for /home/jarpy/.ssh/elastic.id_rsa:"
+send "$passphrase\n";
+expect "Identity added: /home/jarpy/.ssh/elastic.id_rsa (/home/jarpy/.ssh/elastic.id_rsa)"
+interact
