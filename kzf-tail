@@ -1,0 +1,5 @@
+#!/usr/bin/fish
+
+set pod (kls pods | sort --reverse | fzf)
+echo Tailing pod $pod...
+kubectl logs --follow $pod
