@@ -1,5 +1,5 @@
 #!/usr/bin/fish
 
-set project (gcloud projects list --format="value(project_id)" | sort --reverse | fzf)
+set project (gcloud projects list --format="value(project_id)" | sort --reverse | fzf --query "$argv[1]")
 echo Switching project to {$project}...
 gcloud config set project $project

@@ -1,6 +1,6 @@
 #!/usr/bin/fish
 
-set cluster (gcloud container clusters list --format="value(name)" | sort --reverse | fzf)
+set cluster (gcloud container clusters list --format="value(name)" | sort --reverse | fzf --query "$argv[1]")
 set zone (gcloud container clusters list --filter name=$cluster --format="value(location)")
 
 echo Switching cluster to $cluster in $zone...

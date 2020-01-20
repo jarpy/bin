@@ -1,5 +1,5 @@
 #!/usr/bin/fish
 
-set pod (kls pods | sort --reverse | fzf)
+set pod (kls pods | sort --reverse | fzf --query "$argv[1]")
 echo Tailing pod $pod...
 kubectl logs --follow $pod
