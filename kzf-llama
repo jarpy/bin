@@ -1,0 +1,9 @@
+#!/usr/bin/fish
+
+gcloud config set project elastic-apps-163815
+gcloud container clusters get-credentials apps --zone=us-central1-a
+
+set namespace (kls namespaces | sort --reverse | fzf --query "llama")
+echo Switching namespace to {$namespace}...
+kubectl config set-context --current --namespace=$namespace
+set -Ux RELEASE_NAME $namespace
