@@ -7,3 +7,4 @@ set namespace (kls namespaces | sort --reverse | fzf --query "llama")
 echo Switching namespace to {$namespace}...
 kubectl config set-context --current --namespace=$namespace
 set -Ux RELEASE_NAME $namespace
+set -Ux LLAMA_RELEASE $namespace
