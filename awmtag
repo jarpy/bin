@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo | awesome-client <<EOF
+local awful = require("awful");
+local screen = awful.screen.focused();
+local tag = screen.tags[$1];
+tag:view_only()
+EOF
