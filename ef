@@ -1,0 +1,17 @@
+#!/usr/bin/fish
+
+# Usage: ef [FUZZY_MATCH] [ROOT_DIR]
+
+
+if test -n "$argv[1]"
+  set flags --query $argv[1]
+end
+
+if test -n "$argv[2]"
+  set root $argv[2]
+else
+  set root ~/src/
+end
+
+cd $root
+emacsclient --no-wait (fd | fzf $flags)
