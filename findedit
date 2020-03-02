@@ -1,17 +1,23 @@
 #!/usr/bin/fish
 
-# Usage: ef [FUZZY_MATCH] [ROOT_DIR]
+# Usage: findedit [FUZZY_MATCH] [ROOT_DIR]
 
 
 if test -n "$argv[1]"
-  set flags --query $argv[1]
+  set fzf_flags --query=$argv[1]
 end
 
 if test -n "$argv[2]"
-  set root $argv[2]
+  set root_dir $argv[2]
 else
-  set root ~/src/
+  set root_dir $HOME
 end
 
-cd $root
-emacsclient --no-wait (fd | fzf $flags)
+cd $root_dir
+set target (fd | fzf $fzf_flags --preview='bat --color=always {}')
+test -n "$target" || exit 1
+
+emacsclient --no-wait $target
+
+# Switch to Awesome Window Manager tag 2 (emacs)
+awmtag 2
