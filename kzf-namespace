@@ -1,5 +1,13 @@
 #!/usr/bin/fish
 
-set namespace (kls namespaces | sort --reverse | fzf --query "$argv[1]")
+set namespace (
+  kls namespaces |
+    sort --reverse |
+    fzf --query "$argv[1]" \
+        --select-1 \
+        --preview 'kubectl get all --namespace {}' \
+        --preview-window=right:80%)
+test -n "$namespace" || exit 1
+
 echo Switching namespace to {$namespace}...
 kubectl config set-context --current --namespace=$namespace
