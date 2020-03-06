@@ -1,5 +1,9 @@
 #!/bin/fish
 
-git log --oneline |
-  fzf --reverse \
-      --preview="echo {} | awk '{print \$1}' | xargs git show --color=always"
+git log --pretty=format:'%C(yellow)%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' \
+  --abbrev-commit \
+  --color=always |
+
+  fzf --ansi --reverse \
+    --preview="echo {} | awk '{print \$1}' | xargs git show --color=always" \
+    --preview-window="top:70%"
