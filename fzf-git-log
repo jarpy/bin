@@ -1,0 +1,5 @@
+#!/bin/fish
+
+git log --oneline |
+  fzf --reverse \
+      --preview="echo {} | awk '{print \$1}' | xargs git show --color=always"
