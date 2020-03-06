@@ -13,8 +13,7 @@ else
   set root_dir $HOME
 end
 
-cd $root_dir
-set target (fd | fzf $fzf_flags --preview='bat --color=always {}')
+set target (fd --hidden --type f . $root_dir | fzf $fzf_flags --preview='bat --color=always {}' --preview-window=up:80%)
 test -n "$target" || exit 1
 
 emacsclient --no-wait $target

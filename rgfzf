@@ -1,4 +1,4 @@
 #!/usr/bin/fish
 
-rg --files-with-matches $argv 2> /dev/null |\
+rg --ignore-case --files-with-matches $argv 2> /dev/null |\
   fzf --preview 'bat --color=always {}'
