@@ -1,0 +1,4 @@
+#!/usr/bin/fish
+
+set pod (kls pods | sort --reverse | fzf --query "$argv[1]")
+kubectl get pod -o yaml $pod
