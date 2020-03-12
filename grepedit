@@ -1,5 +1,9 @@
-#!/usr/bin/fish
+#!/bin/fish
 
-cd ~/src/
-emacsclient --no-wait (fzfrg $argv)
-awmtag 2
+echo (
+  rg --vimgrep $argv |
+  awk -F ':' '{print $1 ":" $2 ":" $3}' |
+  fzf --tac --preview 'echo {} | awk -F ":" "{print   \" --highlight-line \" \$2 \" --line-range\"; if (\$2 > 20) print \$2-20 \":\" \$2+20; else print \"0:\" \$2+20; print \$1}" | xargs bat --color=always' --preview-window=up:80%
+) | awk -F ":" '{print "+" $2 ":" $3 " " $1}' | xargs emacsclient --no-wait
+
+#awmtag 2
