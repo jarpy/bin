@@ -1,0 +1,5 @@
+#!/usr/bin/fish
+
+kzf-project   $argv[1] &&
+kzf-cluster   $argv[2] &&
+kzf-namespace $argv[3]
