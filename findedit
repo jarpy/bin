@@ -4,13 +4,13 @@
 
 
 if test -n "$argv[1]"
-  set fzf_flags --query=$argv[1]
+    set fzf_flags --query=$argv[1]
 end
 
 if test -n "$argv[2]"
-  set root_dir $argv[2]
+    set root_dir $argv[2]
 else
-  set root_dir $HOME
+    set root_dir $HOME
 end
 
 set target (fd --hidden --type f . $root_dir | fzf $fzf_flags --preview='bat --color=always {}' --preview-window=up:80%)
@@ -19,4 +19,4 @@ test -n "$target" || exit 1
 emacsclient --no-wait $target
 
 # Switch to Awesome Window Manager tag 2 (emacs)
-awmtag 2
+# awmtag 2

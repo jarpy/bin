@@ -1,9 +1,13 @@
 #!/bin/fish
 
-echo (
-  rg --vimgrep $argv |
-  awk -F ':' '{print $1 ":" $2 ":" $3}' |
-  fzf --tac --preview 'echo {} | awk -F ":" "{print   \" --highlight-line \" \$2 \" --line-range\"; if (\$2 > 20) print \$2-20 \":\" \$2+20; else print \"0:\" \$2+20; print \$1}" | xargs bat --color=always' --preview-window=up:80%
-) | awk -F ":" '{print "+" $2 ":" $3 " " $1}' | xargs emacsclient --no-wait
+if test -n "$argv[2]"
+  set rootdir $argv[2]
+else
+  set rootdir $HOME/src
+end
 
-#awmtag 2
+echo (
+  rg --vimgrep $argv[1] $rootdir |
+  awk -F ':' '{print $1 ":" $2 ":" $3}' |
+  fzf --tac --preview 'echo {} | awk -F ":" "{print   \" --highlight-line \" \$2 \" --line-range\"; if (\$2 > 30) print \$2-30 \":\" \$2+30; else print \"0:\" \$2+30; print \$1}" | xargs bat --color=always' --preview-window=up:66%
+) | awk -F ":" '{print "+" $2 ":" $3 " " $1}' | xargs emacsclient --no-wait
