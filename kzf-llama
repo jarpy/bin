@@ -3,7 +3,13 @@
 gcloud config set project elastic-apps-163815
 gcloud container clusters get-credentials apps --zone=us-central1-a
 
-set namespace (kls namespaces | sort --reverse | fzf --query "llama")
+if test -n "$argv[1]"
+    set query llama-$argv[1]
+else
+    set query llama
+end
+
+set namespace (kls namespaces | sort --reverse | fzf --query $query --select-1)
 echo Switching namespace to {$namespace}...
 kubectl config set-context --current --namespace=$namespace
 set -Ux RELEASE_NAME $namespace

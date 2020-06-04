@@ -3,7 +3,7 @@
 set cluster (
   gcloud container clusters list --format="value(name)" |
     sort --reverse |
-    fzf --query "$argv[1]" --select-1
+    fzf --query "$argv[1]" --select-1 --prompt='cluster> '
 )
 test -n "$cluster" || exit 1
 

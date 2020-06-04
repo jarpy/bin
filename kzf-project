@@ -3,7 +3,7 @@
 set project (
   gcloud projects list --format="value(project_id)" |
     sort --reverse |
-    fzf --query "$argv[1]" --select-1
+    fzf --query "$argv[1]" --select-1 --prompt='project> '
 )
 test -n "$project" || exit 1
 

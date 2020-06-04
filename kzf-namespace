@@ -3,10 +3,11 @@
 set namespace (
   kls namespaces |
     sort --reverse |
-    fzf --query "$argv[1]" \
+    fzf --query "$argv" \
         --select-1 \
         --preview 'kubectl get all --namespace {}' \
-        --preview-window=right:80%)
+        --preview-window=right:80% \
+        --prompt='namespace> ')
 test -n "$namespace" || exit 1
 
 echo Switching namespace to {$namespace}...
