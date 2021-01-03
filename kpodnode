@@ -1,0 +1,3 @@
+#!/usr/bin/fish
+
+kubectl get pod $argv[1] -o json | jq -r .spec.nodeName
