@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo | awesome-client <<EOF
+local awful = require("awful");
+local screen = screen.primary;
+local tag = screen.tags[$1];
+awful.tag.viewtoggle(tag);
+EOF
