@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 set project (
   gcloud projects list --format="value(project_id)" |

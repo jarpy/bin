@@ -1,3 +1,3 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 gcloud compute ssh (kpodnode $argv[1])

@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 rg --ignore-case --files-with-matches $argv 2> /dev/null |\
   fzf --preview 'bat --color=always {}' --preview-window=up:80%

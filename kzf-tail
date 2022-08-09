@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 set pod (kls pods | sort --reverse | fzf -i --query "$argv[1]" --select-1)
 echo Tailing pod $pod...

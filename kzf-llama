@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 gcloud config set project elastic-apps-163815
 gcloud container clusters get-credentials apps --zone=us-central1-a

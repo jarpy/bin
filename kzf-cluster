@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 set cluster (
   gcloud container clusters list --format="value(name)" |

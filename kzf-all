@@ -1,4 +1,4 @@
-#!/usr/bin/fish
+#!/usr/bin/env fish
 
 kzf-project   $argv[1] &&
 kzf-cluster   $argv[2] &&
