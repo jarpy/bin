@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+git stash
+git checkout main || git checkout master
+git branch $1
+git checkout $1
+#git stash pop
